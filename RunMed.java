@@ -1,3 +1,8 @@
+//Team RainbowsUnicorns--Lisa Shi, Ling Cheng, Jordan Louie
+//APCS2 pd5
+//HW46 -- Running M[edi]an
+//2016-05-26
+
 /*****************************************************
  * class RunMed
  * Implements an online algorithm to track the median of a growing dataset
@@ -20,7 +25,8 @@ public class RunMed {
      *****************************************************/
     public RunMed() 
     { 
-
+	leftHeap = new ALMaxHeap();
+	rightHeap = new ALMinHeap();
     }//O(1)
 
 
@@ -30,7 +36,13 @@ public class RunMed {
      *****************************************************/
     public double getMedian() 
     {
-
+	if (leftHeap.length() > rightHeap.length())
+	    return leftHeap.peekMax();
+	else if (leftHeap.length() < rightHeap.length())
+	    return rightHeap.peekMin();
+	else
+	    return (leftHeap.peekMax() + rightHeap.peekMin()) / 2.0;
+		    
     }//O(1)
 
 
@@ -52,7 +64,7 @@ public class RunMed {
      *****************************************************/
     public boolean isEmpty() 
     {
-
+	if (leftHeap
     }//O(?)
 
 
