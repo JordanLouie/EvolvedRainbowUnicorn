@@ -21,6 +21,9 @@ public class ALMaxHeap {
 	return _heap.toString(); 
     }//O(n)
 
+public int size(){
+	return _heap.size();
+}
 
     public boolean isEmpty() { return _heap.isEmpty(); } //O(1)
 

@@ -53,6 +53,9 @@ public class ALMinHeap {
     return lvlOrdTrav;
     }//O(n)
 
+    public int size(){
+	return _heap.size();
+    }
 
 
     /*****************************************************

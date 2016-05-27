@@ -36,9 +36,9 @@ public class RunMed {
      *****************************************************/
     public double getMedian() 
     {
-	if (leftHeap.length() > rightHeap.length())
+	if (leftHeap.size() > rightHeap.size())
 	    return leftHeap.peekMax();
-	else if (leftHeap.length() < rightHeap.length())
+	else if (rightHeap.size() > leftHeap.size())
 	    return rightHeap.peekMin();
 	else
 	    return (leftHeap.peekMax() + rightHeap.peekMin()) / 2.0;
@@ -53,8 +53,20 @@ public class RunMed {
      *                getMedian() can run in constant time
      *****************************************************/
     public void insert( int addVal )
-    {   
-     }//O(?)
+    {
+	if (isEmpty()){
+	    leftHeap.add(addVal);
+	    return;
+	}
+	if (leftHeap.peekMax() > addVal)
+	    leftHeap.add(addVal);	
+	else 
+	    rightHeap.add(addVal);
+	if (leftHeap.size() - rightHeap.size() > 1)
+	    rightHeap.add(leftHeap.removeMax());
+	else if (rightHeap.size() - leftHeap.size() > 1)
+	    leftHeap.add(rightHeap.removeMin());
+}//O(logn)
 
 
 
@@ -64,7 +76,9 @@ public class RunMed {
      *****************************************************/
     public boolean isEmpty() 
     {
-	if (leftHeap
+	if (leftHeap.size() == 0 && rightHeap.size() == 0)
+	    return true;
+	return false;
     }//O(?)
 
 
@@ -72,7 +86,6 @@ public class RunMed {
     //main method for testing
     public static void main( String[] args ) {
 
-	/*~~~V~~~~~~~~~~~~move~me~down~~~~~~~~~~~~~V~~~
         RunMed med = new RunMed();
         med.insert(1);
 	System.out.println( med.getMedian() ); //1
@@ -84,6 +97,7 @@ public class RunMed {
 	System.out.println( med.getMedian() ); //4
         med.insert(9);
 	System.out.println( med.getMedian() ); //5
+	/*~~~V~~~~~~~~~~~~move~me~down~~~~~~~~~~~~~V~~~
 	~~~~~|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|~~~*/
 
     }//end main()
